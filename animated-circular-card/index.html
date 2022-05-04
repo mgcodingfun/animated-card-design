@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Card</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-clr: #0e183b;
+        --secondary-clr: #281b5d;
+        --text-clr: rgb(0, 255, 242);
+        --hotPink-clr: rgb(255, 0, 242);
+      }
+
+      body {
+        background-color: var(--primary-clr);
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .main__container {
+        width: 250px;
+        height: 250px;
+        border-radius: 100%;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s linear;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .main__container:after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+        border-radius: 100%;
+        background-color: transparent;
+        border-top: 5px solid pink;
+        animation: rotate 1s linear infinite;
+      }
+
+      .main__container:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        border-radius: 100%;
+        background-color: transparent;
+        border-bottom: 5px solid rgb(0, 255, 242);
+        animation: rotate 1s linear infinite;
+      }
+
+      .main__container:hover::before {
+        animation-play-state: paused;
+      }
+
+      .main__container:hover::after {
+        animation-play-state: paused;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .content {
+        height: 220px;
+        width: 220px;
+        overflow: hidden;
+        border: 3px solid #000;
+        border-radius: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+        background-color: transparent;
+        transition: all 0.5s linear;
+      }
+
+      .main__container:hover .content {
+        border-color: #fff;
+      }
+
+      img {
+        transform: translateY(30%);
+        position: relative;
+        z-index: 10;
+      }
+
+      img.active {
+        display: none;
+      }
+
+      .main_content {
+        display: block;
+        width: 80%;
+        margin: auto;
+        color: var(--text-clr);
+        position: relative;
+        transform: translateY(10%);
+        z-index: 2;
+      }
+
+      .main_content h1 {
+        font-size: 1.4rem;
+        color: var(--text-clr);
+        font-weight: bold;
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: all 0.3s linear;
+      }
+
+      .main_content p {
+        opacity: 0.6;
+        text-align: center;
+        font-size: 0.87rem;
+        margin-top: 0.25rem;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.5s linear;
+      }
+
+      .main__container:hover .main_content h1 {
+        transform: translateX(0%);
+        opacity: 1;
+      }
+
+      .main__container:hover .main_content p {
+        transform: translateX(0%);
+        opacity: 1;
+      }
+
+      .main__container button {
+        padding: 0.35rem;
+        border-radius: 0.3rem;
+        outline: none;
+        border: none;
+        display: block;
+        margin: 1rem auto;
+        font-family: inherit;
+        transition: transform 0.3s linear;
+        border: 2px solid #fff;
+        background-color: transparent;
+        color: #fff;
+        transition: all 0.5s linear;
+        transform: translateY(20%);
+        opacity: 0;
+      }
+
+      .main__container:hover button {
+        transform: translateY(-0%);
+        opacity: 1;
+      }
+
+      .main__container button:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+        background-color: #fff;
+        color: var(--primary-clr);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main__container">
+      <div class="content">
+        <img class="developerImg" src="./developer.jpg" alt="" />
+        <div class="main_content">
+          <h1>Developer Name</h1>
+          <p>Developer | Designer</p>
+
+          <button>Hire Me</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const devImg = document.querySelector(".developerImg");
+
+      const mainCont = document.querySelector(".main__container");
+
+      mainCont.addEventListener("mouseenter", () => {
+        devImg.classList.add("active");
+      });
+
+      mainCont.addEventListener("mouseleave", () => {
+        devImg.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>
